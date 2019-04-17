@@ -62,9 +62,11 @@ export const routerGuard = new RouterGuard(
         canActiveIds: [1, 2, 3, 4, 5],
     },
     [
-        {name: 'home', path: '/home', id: 1},
-        {name: 'index', path: '/index', id: 2},
+        {name: 'recommend', path: '/recommend', id: 1},
+        {name: 'singer', path: '/singer', id: 2},
         {name: 'vuex', path: '/vuex', id: 3},
+        {name: 'rank', path: '/rank', id: 4},
+        {name: 'search', path: '/search', id: 5},
     ],
 );
 

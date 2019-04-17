@@ -1,8 +1,11 @@
 <template>
     <div id="app">
         <MHeader></MHeader>
+        <MTab></MTab>
         <keep-alive>
-            <router-view/>
+            <div class="content">
+                <router-view/>
+            </div>
         </keep-alive>
         <MFooter></MFooter>
         <MPlayer></MPlayer>
@@ -13,12 +16,14 @@
     import MFooter from "@/common/m-footer/MFooter.vue";
     import MHeader from "@/common/m-header/MHeader.vue";
     import MPlayer from "@/common/m-player/MPlayer.vue";
+    import MTab from "@/common/m-tab/MTab.vue";
 
     @Component({
         components: {
             MHeader,
             MFooter,
             MPlayer,
+            MTab,
         },
     })
     export default class App extends Vue {
@@ -35,6 +40,15 @@
         -webkit-tap-highlight-color: transparent;
         background: $color-background;
         color: $color-text;
+        #app{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            .content{
+                flex: 1;
+            }
+        }
     }
 
 </style>

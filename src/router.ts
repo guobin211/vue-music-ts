@@ -1,19 +1,38 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './pages/Home.vue';
+import Recommend from "@/pages/Recommend.vue";
 
 Vue.use(Router);
 
 export default new Router({
+  mode: 'hash',
+  scrollBehavior: () => {
+    return {x: 0, y: 0}
+  },
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/recommend',
     },
     {
-      path: '/home',
-      name: 'home',
-      component: Home,
+      path: '/recommend',
+      name: 'recommend',
+      component: Recommend,
+    },
+    {
+      path: '/singer',
+      name: 'singer',
+      component: () => import(/* webpackChunkName: "singer" */ './pages/Singer.vue'),
+    },
+    {
+      path: '/rank',
+      name: 'rank',
+      component: () => import(/* webpackChunkName: "rank" */ './pages/Rank.vue'),
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: () => import(/* webpackChunkName: "search" */ './pages/Search.vue'),
     },
     {
       path: '/vuex',
@@ -25,7 +44,7 @@ export default new Router({
     },
     {
       path: '**',
-      redirect: '/home',
+      redirect: '/recommend',
     },
-  ],
+  ]
 });
