@@ -4,6 +4,7 @@
  */
 /**
  * state 数据类型定义
+ * object 对象会改变store的内存
  */
 export interface RootStateTypes {
     author: Author;

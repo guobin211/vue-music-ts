@@ -5,9 +5,6 @@
 import { RootStateTypes } from './types';
 import { GetterTree } from 'vuex';
 
-/**
- * getters
- */
 const getters: GetterTree<RootStateTypes, any> = {
     author: (state: RootStateTypes) => state.author,
 };
