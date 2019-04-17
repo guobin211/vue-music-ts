@@ -17,6 +17,6 @@ export default class HelloWorld extends Vue {
 <style scoped lang="scss">
 @import "../styles/@color";
   h1{
-    color: $red;
+    color: $color-text;
   }
 </style>
