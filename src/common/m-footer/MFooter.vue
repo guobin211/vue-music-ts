@@ -1,7 +1,7 @@
 <template>
 
-    <div>
-        <h1>footer</h1>
+    <div class="footer">
+        <p>vue-music-ts</p>
     </div>
 
 </template>
@@ -13,6 +13,15 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    .footer{
+        height: 20px;
+        text-align: center;
+        background: rgba(247, 247, 247, 0.13);
+        p{
+            line-height: 20px;
+            font-size: 8px;
+            font-weight: 100;
+        }
+    }
 </style>

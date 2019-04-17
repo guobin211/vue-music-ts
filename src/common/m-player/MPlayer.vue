@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="player">
         <h1>player</h1>
     </div>
 
@@ -14,5 +14,10 @@
 </script>
 
 <style scoped>
-
+    .player{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
 </style>
