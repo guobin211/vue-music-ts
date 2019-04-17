@@ -14,14 +14,14 @@
     })
     export default class Home extends Vue {
         public openModal() {
-            this.$message.info('open message');
-            this.$notify.info('notify');
-            this.$message.warning('warn');
-            const loading =this.$loading({
+            this.$message.info("open message");
+            this.$notify.info("notify");
+            this.$message.warning("warn");
+            const loading = this.$loading({
                 lock: true,
-                text: 'Loading',
-                spinner: 'el-icon-loading',
-                background: 'rgba(0, 0, 0, 0.7)'
+                text: "Loading",
+                spinner: "el-icon-loading",
+                background: "rgba(0, 0, 0, 0.7)"
             });
 
             setTimeout(() => {
