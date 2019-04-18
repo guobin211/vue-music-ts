@@ -11,6 +11,11 @@ import 'element-ui/lib/theme-chalk/index.css';
 import { Locale } from '@/config/locale';
 Vue.use(ElementUI, { Locale });
 
+// plugin
+import VueLazyload from 'vue-lazyload';
+Vue.use(VueLazyload);
+
+// global util
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;

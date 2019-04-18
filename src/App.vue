@@ -2,11 +2,11 @@
     <div id="app">
         <MHeader></MHeader>
         <MTab></MTab>
-        <keep-alive>
-            <div class="content">
+        <div class="content">
+            <keep-alive>
                 <router-view/>
-            </div>
-        </keep-alive>
+            </keep-alive>
+        </div>
         <MFooter></MFooter>
         <MPlayer></MPlayer>
     </div>
@@ -31,7 +31,8 @@
 </script>
 <style lang="scss">
     @import "styles/@color";
-    body, html{
+
+    body, html {
         line-height: 1;
         width: 100%;
         height: 100%;
@@ -40,12 +41,14 @@
         -webkit-tap-highlight-color: transparent;
         background: $color-background;
         color: $color-text;
-        #app{
+
+        #app {
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            .content{
+
+            .content {
                 flex: 1;
             }
         }
