@@ -4,7 +4,17 @@
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
+    devServer: {
+        proxy: {
+            "/api": {
+                changeOrigin: true,
+                target: "http://localhost:4000/",
+                ws: true,
+            },
+        },
+    },
     productionSourceMap: false,
+
     // configureWebpack: config => {
     //     if (isProd) {
     //         const plugins = [];

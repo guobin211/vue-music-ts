@@ -1,5 +1,6 @@
 # vue-music-ts
 
+### 仿 vue-music 项目 原版地址:
 ## Project setup
 ```
 npm install

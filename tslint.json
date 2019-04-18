@@ -20,6 +20,16 @@
     "member-ordering": false,
     "no-empty": false,
     "semicolon": false,
-    "prefer-for-of": false
+    "prefer-for-of": false,
+    "no-parameter-properties": false,
+    "no-use-before-declare": true,
+    "no-var-keyword": true,
+    "no-shadowed-variable": true,
+    "no-duplicate-variable": true,
+    "member-access": false,
+    "comment-format": [
+      true,
+      "check-space"
+    ]
   }
 }
