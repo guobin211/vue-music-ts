@@ -35,7 +35,7 @@
         }, 0)
       })
     }
-    beforeRouteEnter(to: any, from: any, next: Function): void {
+    beforeRouteEnter(to: any, from: any, next: () => void): void {
       console.log(to);
       next();
     }

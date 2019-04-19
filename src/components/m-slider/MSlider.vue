@@ -117,7 +117,7 @@
         /**
          * 自动播放
          */
-        private playSlider() {
+        private playSlider(): void {
             if (this.$props.autoPlay) {
                 this.timer = setTimeout(() => {
                     this.BSSlider.next();
@@ -125,7 +125,7 @@
             }
         }
 
-        private initDots(n: number) {
+        private initDots(n: number): void {
             this.dots = new Array(n);
         }
     }

@@ -13,7 +13,9 @@ import { routerGuard } from '@/config/RouterGuard';
 
 // plugin
 import VueLazyload from 'vue-lazyload';
-Vue.use(VueLazyload);
+Vue.use(VueLazyload, {
+  loading: require('./assets/images/default.png'),
+});
 
 // global util
 // Vue.prototype.$loading = Loading.service;

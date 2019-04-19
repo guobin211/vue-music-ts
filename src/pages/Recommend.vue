@@ -1,35 +1,41 @@
 <template>
-  <div class="recommend" ref="recommend">
-    <div class="recommend-warp">
-      <div class="slider-warp" ref="sliderWrapper">
-        <m-slider v-if="recommends.length > 0">
-          <template v-slot:slider>
-            <div v-for="(item, index) in recommends" :key="index">
-              <a :href="item.linkUrl">
-                <img :src="item.picUrl" alt="slider">
-              </a>
-            </div>
-          </template>
-        </m-slider>
-      </div>
-      <div class="recommend-list">
-        <h1 class="list-title">热门歌单推荐</h1>
-        <ul>
-          <li @click="selectItem(item)" v-for="(item, index) in discList" class="item" :key="index">
-            <div class="icon">
-              <img width="60" height="60" v-lazy="item.imgurl">
-            </div>
-            <div class="text">
-              <h2 class="name" v-html="item.creator.name"></h2>
-              <p class="desc" v-html="item.dissname"></p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <m-scroll></m-scroll>
+  <div class="recommend">
+    <!--  scroll 组件  -->
+    <m-scroll ref="scroll" class="recommend-warp" :data="discList" @onScroll="handleScroll" :listen-scroll="true">
+      <template v-slot:scroll>
+        <div class="slider-warp">
+          <!--  slider组件  -->
+          <m-slider v-if="recommends.length > 0">
+            <template v-slot:slider>
+              <div v-for="(item, index) in recommends" :key="index">
+                <a :href="item.linkUrl">
+                  <img :src="item.picUrl" alt="slider" @load="loadImg">
+                </a>
+              </div>
+            </template>
+          </m-slider>
+        </div>
+        <div class="recommend-list">
+          <h1 class="list-title">热门歌单推荐</h1>
+          <ul>
+            <li @click="selectItem(item)" v-for="(item, index) in discList" class="item" :key="index">
+              <div class="icon">
+                <img width="60" height="60" v-lazy="item.imgurl">
+              </div>
+              <div class="text">
+                <h2 class="name" v-html="item.creator.name"></h2>
+                <p class="desc" v-html="item.dissname"></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="loading-container" v-show="!discList.length">
+          <m-loading></m-loading>
+        </div>
+      </template>
+    </m-scroll>
   </div>
+
 </template>
 
 <script lang="ts">
@@ -38,6 +44,7 @@
   import { RESPONSE } from "@/config/config";
   import MSlider from "@/components/m-slider/MSlider.vue";
   import MScroll from '@/components/m-scroll/MScroll.vue';
+  import MLoading from '@/components/m-loading/MLoading.vue';
 
 
   export interface IRecommends {
@@ -57,25 +64,33 @@
     components: {
       MSlider,
       MScroll,
-    },
-    beforeRouteEnter(to: any, from: any, next: Function): void {
-      next();
+      MLoading,
     }
   })
   export default class Recommend extends Vue {
     @Provide() recommends: IRecommends[] = [];
     @Provide() discList: IDiscList[] = [];
+    private checkloaded: boolean = false;
 
     created() {
-      this.getRecommend();
-      this.getDiscList();
+      this._getRecommend();
+      this._getDiscList();
     }
 
+    handleScroll(e: any) {
+      console.log(e);
+    }
     public selectItem(el: any) {
 
     }
 
-    private getRecommend(): void {
+    public loadImg() {
+      if (!this.checkloaded) {
+        (this.$refs.scroll as any).refresh();
+        this.checkloaded = true;
+      }
+    }
+    private _getRecommend(): void {
       dataService.getRecommend().then((res: any) => {
         if (res.code === RESPONSE.ERROR_OK) {
           this.recommends = res.data.slider;
@@ -83,7 +98,7 @@
       })
     }
 
-    private getDiscList(): void {
+    private _getDiscList(): void {
       dataService.getDiscList().then((res: any) => {
         if (res.code === RESPONSE.ERROR_OK) {
           this.discList = res.data.list;
@@ -102,6 +117,7 @@
       width: 100%;
       top: 88px;
       bottom: 0;
+      overflow: hidden;
 
       .slider-warp {
         position: relative;
@@ -152,6 +168,13 @@
           }
         }
       }
+    }
+
+    .loading-container{
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 </style>
