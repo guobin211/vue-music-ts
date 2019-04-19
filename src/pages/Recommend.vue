@@ -78,7 +78,6 @@
     }
 
     handleScroll(e: any) {
-      console.log(e);
     }
     public selectItem(el: any) {
 
