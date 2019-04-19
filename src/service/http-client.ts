@@ -7,28 +7,40 @@ import JSONP from "jsonp";
 
 class HttpClient {
 
-    constructor() {}
+  constructor() {
+  }
 
-    public jsonp(url: string, data: any, option: any) {
-        url += (url.indexOf('?') < 0 ? '?' : '&') + this.buildParams(data);
-        return new Promise((resolve, reject) => {
-            JSONP(url, option, (err, res) => {
-                if (!err) {
-                    resolve(res);
-                } else {
-                    reject(err)
-                }
-            })
-        })
-    }
-    private buildParams(obj: {[key: string]: string}) {
-        let url = '';
-        for (const k in obj) {
-            const value = obj[k];
-            url += '&' + k + '=' + encodeURIComponent(value)
+  /**
+   * jsonp get
+   * @param url
+   * @param data object
+   * @param option
+   */
+  public jsonp(url: string, data: any, option: any) {
+    url += (url.indexOf('?') < 0 ? '?' : '&') + this.buildParams(data);
+    return new Promise((resolve, reject) => {
+      JSONP(url, option, (err, res) => {
+        if (!err) {
+          resolve(res);
+        } else {
+          reject(err)
         }
-        return url ? url.substring(1) : ''
+      })
+    })
+  }
+
+  /**
+   * 构造url
+   * @param obj
+   */
+  private buildParams(obj: { [key: string]: string }) {
+    let url = '';
+    for (const k in obj) {
+      const value = obj[k];
+      url += '&' + k + '=' + encodeURIComponent(value)
     }
+    return url ? url.substring(1) : ''
+  }
 }
 
 export const http = new HttpClient();

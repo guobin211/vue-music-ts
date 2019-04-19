@@ -1,11 +1,12 @@
 <template>
-    <div class="MScroll">
+    <div class="m-scroll">
         MScroll
     </div>
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from "vue-property-decorator";
+    import {Component, Vue } from "vue-property-decorator";
+    // import Component from 'vue-class-component'
 
     @Component({
         components: {},
@@ -43,7 +44,6 @@
     export default class MScroll extends Vue {
 
         mounted() {
-
         }
     }
 </script>
