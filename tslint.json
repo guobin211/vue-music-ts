@@ -39,6 +39,7 @@
       "check-space"
     ],
     "no-unused-expression": false,
-    "no-unused-variable": false
+    "no-unused-variable": false,
+    "space-before-function-paren": false
   }
 }
