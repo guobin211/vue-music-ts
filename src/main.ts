@@ -4,18 +4,19 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 
+
 import { routerGuard } from '@/config/RouterGuard';
+// plugin
+import VueLazyload from 'vue-lazyload';
 // element all
 // import ElementUI, { Loading, Message, MessageBox, Notification } from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
 // import { Locale } from '@/config/locale';
 // Vue.use(ElementUI, { Locale });
-
-// plugin
-import VueLazyload from 'vue-lazyload';
 Vue.use(VueLazyload, {
   loading: require('./assets/images/default.png'),
 });
+
 
 // global util
 // Vue.prototype.$loading = Loading.service;

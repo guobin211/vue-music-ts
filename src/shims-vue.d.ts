@@ -1,5 +1,15 @@
 declare module '*.vue' {
   import Vue from 'vue';
-  export default Vue;
+
+  class MyVue extends Vue {
+    public $refs: any;
+
+    // @ts-ignore
+    constructor() {
+      super();
+    }
+  }
+
+  export default MyVue;
 }
 

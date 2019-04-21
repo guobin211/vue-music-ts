@@ -17,7 +17,7 @@ export function hasClass(el: HTMLElement, className: string): boolean {
   return reg.test(el.className)
 }
 
-export function getData(el: HTMLElement, name: string, val?: string) {
+export function getData(el: any, name: string, val?: string) {
   const prefix = 'data-';
   if (val) {
     return el.setAttribute(prefix + name, val)

@@ -1,36 +1,39 @@
 <template>
   <div class="recommend">
     <!--  scroll 组件  -->
-    <m-scroll ref="scroll" class="recommend-warp" :data="discList" @onScroll="handleScroll" :listen-scroll="true">
+    <m-scroll :data="discList" :listen-scroll="true" @onScroll="handleScroll" class="recommend-warp"
+              ref="scroll">
       <template v-slot:scroll>
-        <div class="slider-warp">
-          <!--  slider组件  -->
-          <m-slider v-if="recommends.length > 0">
-            <template v-slot:slider>
-              <div v-for="(item, index) in recommends" :key="index">
-                <a :href="item.linkUrl">
-                  <img :src="item.picUrl" alt="slider" @load="loadImg">
-                </a>
-              </div>
-            </template>
-          </m-slider>
-        </div>
-        <div class="recommend-list">
-          <h1 class="list-title">热门歌单推荐</h1>
-          <ul>
-            <li @click="selectItem(item)" v-for="(item, index) in discList" class="item" :key="index">
-              <div class="icon">
-                <img width="60" height="60" v-lazy="item.imgurl">
-              </div>
-              <div class="text">
-                <h2 class="name" v-html="item.creator.name"></h2>
-                <p class="desc" v-html="item.dissname"></p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="loading-container" v-show="!discList.length">
-          <m-loading></m-loading>
+        <div>
+          <div class="slider-warp">
+            <!--  slider组件  -->
+            <m-slider v-if="recommends.length > 0">
+              <template v-slot:slider>
+                <div :key="index" v-for="(item, index) in recommends">
+                  <a :href="item.linkUrl">
+                    <img :src="item.picUrl" @load="loadImg" alt="slider">
+                  </a>
+                </div>
+              </template>
+            </m-slider>
+          </div>
+          <div class="recommend-list">
+            <h1 class="list-title">热门歌单推荐</h1>
+            <ul>
+              <li :key="index" @click="selectItem(item)" class="item" v-for="(item, index) in discList">
+                <div class="icon">
+                  <img height="60" v-lazy="item.imgurl" width="60">
+                </div>
+                <div class="text">
+                  <h2 class="name" v-html="item.creator.name"></h2>
+                  <p class="desc" v-html="item.dissname"></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="loading-container" v-show="!discList.length">
+            <m-loading></m-loading>
+          </div>
         </div>
       </template>
     </m-scroll>
@@ -78,9 +81,11 @@
     }
 
     handleScroll(e: any) {
+      console.log(e);
     }
-    public selectItem(el: any) {
 
+    public selectItem(el: any) {
+      console.log(el);
     }
 
     public loadImg() {
@@ -89,6 +94,7 @@
         this.checkloaded = true;
       }
     }
+
     private _getRecommend(): void {
       dataService.getRecommend().then((res: any) => {
         if (res.code === RESPONSE.ERROR_OK) {
@@ -107,7 +113,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
   @import "../styles/@color";
 
   .recommend {
@@ -169,7 +175,7 @@
       }
     }
 
-    .loading-container{
+    .loading-container {
       position: absolute;
       width: 100%;
       top: 50%;

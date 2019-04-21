@@ -1,8 +1,6 @@
 <template>
-  <div class="m-scroll" ref="warp">
-    <div>
-      <slot name="scroll"></slot>
-    </div>
+  <div class="m-scroll" ref="scrollWarp">
+    <slot name="scroll"></slot>
   </div>
 </template>
 
@@ -29,9 +27,13 @@
         type: Array,
         default: null
       },
+      momentum: {
+        type: Boolean,
+        default: true
+      },
       refreshDelay: {
         type: Number,
-        default: 20
+        default: 40
       }
     }
   })
@@ -47,7 +49,8 @@
     }
 
     @Emit('onScroll')
-    emitScroll(pos: BScroll.Position) {}
+    emitScroll(pos: BScroll.Position) {
+    }
 
     mounted() {
       setTimeout(() => {
@@ -59,8 +62,8 @@
       this.scroll && this.scroll.scrollTo(x, y)
     }
 
-    scrollToElement(el: HTMLElement) {
-      this.scroll && this.scroll.scrollToElement(el)
+    scrollToElement(...args: any) {
+      this.scroll && this.scroll.scrollToElement.apply(this.scroll, args)
     }
 
     refresh(): void {
@@ -68,13 +71,11 @@
     }
 
     private _initScroll() {
-      this.scroll = new BScroll('.m-scroll', {
+      this.scroll = new BScroll((this.$refs.scrollWarp as Element), {
         scrollX: false,
         scrollY: true,
-        snap: {
-          loop: false
-        },
-        momentum: false,
+        snap: false,
+        momentum: this.$props.momentum,
         probeType: this.$props.probeType,
         click: this.$props.click,
       });
@@ -88,5 +89,5 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 </style>
