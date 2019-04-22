@@ -36,10 +36,11 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue, Watch } from "vue-property-decorator";
+  import { Component, Emit, Vue, Watch } from "vue-property-decorator";
   import MScroll from '../m-scroll/MScroll.vue';
   import MLoading from '../m-loading/MLoading.vue';
   import { getData } from "@/utils/dom";
+  import { SingerData } from '@/service/singer-data';
 
   const ANCHOR_HEIGHT = 18;
   const TITLE_HEIGHT = 30;
@@ -131,6 +132,10 @@
       (this.$refs.fixed as HTMLElement).style.transform = `translate3d(0, ${fixedTop}px, 0)`
     }
 
+    @Emit('onSelected')
+    onSelected(e: any) {
+    }
+
     onShortcutTouchStart(e: TouchEvent) {
       const elIndex = getData(e.target, 'index');
       this.touchData.y1 = e.touches[0].pageY;
@@ -146,7 +151,11 @@
       this._scrollTo(anchorIndex);
     }
 
-    selectItem(e: DocumentEvent) {
+    selectItem(e: SingerData) {
+      // this.$router.push({
+      //   path: `/singer/${e.id}`
+      // });
+      this.onSelected(e);
     }
 
     handleScroll(e: { x: number, y: number }) {

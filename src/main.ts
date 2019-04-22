@@ -3,11 +3,9 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
-
-
-import { routerGuard } from '@/config/RouterGuard';
 // plugin
 import VueLazyload from 'vue-lazyload';
+import { routerGuard } from './config/RouterGuard';
 // element all
 // import ElementUI, { Loading, Message, MessageBox, Notification } from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';

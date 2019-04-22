@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Recommend from "@/pages/Recommend.vue";
+import SingerDetail from "@/pages/SingerDetail.vue";
+import Singer from "@/pages/Singer.vue";
 
 Vue.use(Router);
 
@@ -22,7 +24,14 @@ export default new Router({
     {
       path: '/singer',
       name: 'singer',
-      component: () => import(/* webpackChunkName: "singer" */ './pages/Singer.vue'),
+      component: Singer,
+      children: [
+        {
+          path: ':id',
+          name: 'detail',
+          component: SingerDetail
+        },
+      ]
     },
     {
       path: '/rank',

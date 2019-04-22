@@ -1,6 +1,6 @@
 <template>
   <div class="singer" ref="singer">
-    <m-list-view :list-data="singerList" ref="list" v-if="singerList"></m-list-view>
+    <m-list-view :list-data="singerList" @onSelected="navTo" ref="list" v-if="singerList"></m-list-view>
     <router-view></router-view>
   </div>
 </template>
@@ -28,6 +28,12 @@
   export default class Singer extends Vue {
 
     public singerList: ISinger[] = [];
+
+    navTo(e: any) {
+      this.$router.push({
+        path: `/singer/${e.id}`
+      });
+    }
 
     created() {
       this._getSingerList();
