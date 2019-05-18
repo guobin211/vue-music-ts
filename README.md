@@ -5,15 +5,13 @@
 
 ### 启动
 
-```bash
-
+```
    npm run serve
 ```
 
 ### 开发指南
 
-```markdown
-   
+```
    1.监听data 
    
   

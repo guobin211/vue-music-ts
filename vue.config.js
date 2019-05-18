@@ -1,23 +1,25 @@
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // const CompressionWebpackPlugin = require('compression-webpack-plugin');
 // const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
-const isProd = process.env.NODE_ENV === "production";
-const path = require("path");
+const isProd = process.env.NODE_ENV === 'production';
+const path = require('path');
 
 module.exports = {
   // 基本路径
-  publicPath: "./",
+  publicPath: './',
   // 输出文件目录
-  outputDir: "dist",
+  outputDir: 'dist',
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,
   devServer: {
+
+    port: 4204,
     proxy: {
-      "/api": {
+      '/api': {
         changeOrigin: true,
-        target: "http://localhost:4000/",
-        ws: true,
-      },
+        target: 'http://localhost:4000/',
+        ws: true
+      }
     }
   },
   chainWebpack: () => {
@@ -25,19 +27,19 @@ module.exports = {
   configureWebpack: config => {
     if (isProd) {
       // 为生产环境修改配置...
-      config.mode = "production";
+      config.mode = 'production';
     } else {
       // 为开发环境修改配置...
-      config.mode = "development";
+      config.mode = 'development';
     }
 
     Object.assign(config, {
       // 开发生产共同配置
       resolve: {
-        extensions: [".js", ".vue", ".json", ".ts", ".tsx"],
+        extensions: ['.js', '.vue', '.json', '.ts', '.tsx'],
         alias: {
-          vue$: "vue/dist/vue.js",
-          "@": path.resolve(__dirname, "./src")
+          vue$: 'vue/dist/vue.js',
+          '@': path.resolve(__dirname, './src')
         }
       }
     });
@@ -53,7 +55,7 @@ module.exports = {
     loaderOptions: {},
     // 启用 CSS modules for all css / pre-processor files.
     modules: false
-  },
+  }
 
   // configureWebpack: config => {
   //     if (isProd) {
