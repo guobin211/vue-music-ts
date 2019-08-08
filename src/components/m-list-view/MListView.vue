@@ -61,7 +61,7 @@
 
     public isListenScroll = true;
     public probeType = 3;
-    public checkloaded = false;
+    public checkLoaded = false;
 
     // 记录当前滚动位置
     public scrollY = -1;
@@ -95,7 +95,7 @@
     @Watch('listData')
     listDataChange() {
       setTimeout(() => {
-        this._computedListHight();
+        this._computedListHeight();
       }, 20)
     }
 
@@ -176,7 +176,7 @@
       (this.$refs.scroll as any).scrollToElement((this.$refs.listGroup as any[])[index], 0);
     }
 
-    private _computedListHight() {
+    private _computedListHeight() {
       const list: Element[] = this.$refs.listGroup as Element[];
       let height = 0;
       this.listHeight.push(height);
@@ -188,9 +188,9 @@
     }
 
     loadImg() {
-      if (!this.checkloaded) {
+      if (!this.checkLoaded) {
         (this.$refs.scroll as any).refresh();
-        this.checkloaded = true;
+        this.checkLoaded = true;
       }
     }
 
