@@ -81,7 +81,11 @@
     }
 
     handleScroll(e: any) {
-      console.log(e);
+      if (e.y === 0) {
+          console.log('上拉刷新')
+      } else {
+          console.log(e)
+      }
     }
 
     public selectItem(el: any) {

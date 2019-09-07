@@ -41,6 +41,7 @@
   import MLoading from '../m-loading/MLoading.vue';
   import { getData } from "@/utils/dom";
   import { SingerData } from '@/service/singer-data';
+  import { MScrollD } from "@/components/m-scroll/MScroll";
 
   const ANCHOR_HEIGHT = 18;
   const TITLE_HEIGHT = 30;
@@ -152,9 +153,6 @@
     }
 
     selectItem(e: SingerData) {
-      // this.$router.push({
-      //   path: `/singer/${e.id}`
-      // });
       this.onSelected(e);
     }
 
@@ -173,7 +171,7 @@
       }
       this.scrollY = -this.listHeight[index];
       // 调用 scroll 组件的方法
-      (this.$refs.scroll as any).scrollToElement((this.$refs.listGroup as any[])[index], 0);
+      (this.$refs.scroll as MScrollD).scrollToElement((this.$refs.listGroup as any[])[index], 0);
     }
 
     private _computedListHeight() {
@@ -189,7 +187,7 @@
 
     loadImg() {
       if (!this.checkLoaded) {
-        (this.$refs.scroll as any).refresh();
+        (this.$refs.scroll as MScrollD).refresh();
         this.checkLoaded = true;
       }
     }

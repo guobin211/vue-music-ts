@@ -28,16 +28,16 @@ export function getData(el: any, name: string, val?: string) {
 const elementStyle = document.createElement('div').style;
 
 const vendor = (() => {
-  const transformNames = {
-    webkit: 'webkitTransform',
-    Moz: 'MozTransform',
-    O: 'OTransform',
-    ms: 'msTransform',
-    standard: 'transform'
+  const transformNames: any = {
+    'webkit': 'webkitTransform',
+    'Moz': 'MozTransform',
+    'O': 'OTransform',
+    'ms': 'msTransform',
+    'standard': 'transform'
   };
   for (const key in transformNames) {
-    // @ts-ignore
-    if (elementStyle[transformNames[key]] !== undefined) {
+    const elKey = transformNames[key];
+    if (elementStyle[elKey] !== undefined) {
       return key
     }
   }
