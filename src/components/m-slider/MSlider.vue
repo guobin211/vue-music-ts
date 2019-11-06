@@ -4,131 +4,128 @@
       <slot name="slider"></slot>
     </div>
     <div class="dots">
-            <span :class="{active: currentSliderIndex === index }" :key="index" class="dot"
-                  v-for="(item, index) in dots"></span>
+        <span v-for="(item, index) in dots" :key="index" class="dot"
+              :class="{active: currentSliderIndex === index }">
+        </span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-    import {Component, Provide, Vue} from "vue-property-decorator";
-    import {addClass} from "@/utils/dom";
-    import BScroll from "better-scroll";
+  import { Component, Provide, Vue } from 'vue-property-decorator';
+  import { addClass } from '@/utils/dom';
+  import BScroll from 'better-scroll';
 
-    @Component({
-        components: {},
-        props: {
-            loop: {
-                type: Boolean,
-                default: true
-            },
-            autoPlay: {
-                type: Boolean,
-                default: true
-            },
-            interval: {
-                type: Number,
-                default: 4000
-            }
-        },
-    })
-    export default class MSlider extends Vue {
-        @Provide()
-        private BSSlider: any;
-
-        @Provide()
-        private timer: any;
-
-        @Provide()
-        public currentSliderIndex: number = 0;
-
-        @Provide()
-        public dots: number[] = [];
-
-        mounted(): void {
-            setTimeout(() => {
-                this.setSliderWidth(true);
-                this.initSlider();
-            }, 20);
-
-            window.addEventListener('resize', () => {
-                if (this.BSSlider) {
-                    setTimeout(() => {
-                        this.setSliderWidth(false);
-                        this.BSSlider.refresh();
-                    }, 20);
-                }
-            })
-        }
-
-        destroy(): void {
-            clearTimeout(this.timer);
-        }
-
-        /**
-         * 设置warp 宽度
-         * @param isFirst
-         */
-        private setSliderWidth(isFirst: boolean) {
-            const children: any = (this.$refs.sliderGroup as HTMLDivElement).children;
-            this.initDots(children.length);
-            let width = 0;
-            const sliderWidth = (this.$refs.slider as HTMLDivElement).clientWidth;
-            for (let i = 0; i < children.length; i++) {
-                const child = children[i];
-                addClass(child, 'slider-item');
-                child.style.width = sliderWidth + 'px';
-                width += sliderWidth
-            }
-            if (this.$props.loop && isFirst) {
-                width += 2 * sliderWidth
-            }
-            (this.$refs.sliderGroup as HTMLElement).style.width = width + 'px'
-        }
-
-        /**
-         * 实例化 BSSlider
-         */
-        private initSlider() {
-            this.BSSlider = new BScroll((this.$refs.slider as Element), {
-                scrollX: true,
-                scrollY: false,
-                momentum: false,
-                snap: {
-                    loop: this.$props.loop
-                },
-                click: false
-            });
-            this.BSSlider.on('scrollEnd', () => {
-                this.currentSliderIndex = this.BSSlider.getCurrentPage().pageX;
-                this.playSlider();
-            });
-            /**
-             * 自动滚动防止多重定时器
-             */
-            this.BSSlider.on('beforeScrollStart', () => {
-                if (this.$props.autoPlay) {
-                    clearInterval(this.timer);
-                }
-            });
-            this.playSlider();
-        }
-
-        /**
-         * 自动播放
-         */
-        private playSlider(): void {
-            if (this.$props.autoPlay) {
-                this.timer = setTimeout(() => {
-                    this.BSSlider.next();
-                }, this.$props.interval)
-            }
-        }
-
-        private initDots(n: number): void {
-            this.dots = new Array(n);
-        }
+  @Component({
+    components: {},
+    props: {
+      loop: {
+        type: Boolean,
+        default: true
+      },
+      autoPlay: {
+        type: Boolean,
+        default: true
+      },
+      interval: {
+        type: Number,
+        default: 4000
+      }
     }
+  })
+  export default class MSlider extends Vue {
+    @Provide()
+    private BSSlider: any;
+    @Provide()
+    private timer: any;
+    @Provide()
+    public currentSliderIndex: number = 0;
+    @Provide()
+    public dots: number[] = [];
+
+    mounted(): void {
+      setTimeout(() => {
+        this.setSliderWidth(true);
+        this.initSlider();
+      }, 20);
+      window.addEventListener('resize', () => {
+        if (this.BSSlider) {
+          setTimeout(() => {
+            this.setSliderWidth(false);
+            this.BSSlider.refresh();
+          }, 20);
+        }
+      })
+    }
+
+    destroy(): void {
+      clearTimeout(this.timer);
+    }
+
+    /**
+     * 设置warp 宽度
+     * @param isFirst
+     */
+    private setSliderWidth(isFirst: boolean) {
+      const children: any = (this.$refs.sliderGroup as HTMLDivElement).children;
+      this.initDots(children.length);
+      let width = 0;
+      const sliderWidth = (this.$refs.slider as HTMLDivElement).clientWidth;
+      for (let i = 0; i < children.length; i++) {
+        const child = children[i];
+        addClass(child, 'slider-item');
+        child.style.width = sliderWidth + 'px';
+        width += sliderWidth
+      }
+      if (this.$props.loop && isFirst) {
+        width += 2 * sliderWidth
+      }
+      (this.$refs.sliderGroup as HTMLElement).style.width = width + 'px'
+    }
+
+    /**
+     * 实例化 BSSlider
+     */
+    private initSlider() {
+      this.BSSlider = new BScroll((this.$refs.slider as Element), {
+        scrollX: true,
+        scrollY: false,
+        momentum: false,
+        snap: {
+          loop: this.$props.loop
+        },
+        click: false
+      });
+      this.BSSlider.on('scrollEnd', () => {
+        this.currentSliderIndex = this.BSSlider.getCurrentPage().pageX;
+        this.playSlider();
+      });
+      /**
+       * 自动滚动防止多重定时器
+       */
+      this.BSSlider.on('beforeScrollStart', () => {
+        if (this.$props.autoPlay) {
+          clearInterval(this.timer);
+        }
+      });
+      this.playSlider();
+    }
+
+    /**
+     * 自动播放
+     */
+    private playSlider(): void {
+      if (this.$props.autoPlay) {
+        this.timer = setTimeout(() => {
+          this.BSSlider.next();
+        }, this.$props.interval)
+      }
+    }
+
+    private initDots(n: number): void {
+      this.dots = new Array(n);
+    }
+  }
 </script>
 
 <style lang="scss" scoped>

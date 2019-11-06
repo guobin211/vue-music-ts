@@ -22,7 +22,7 @@
             <ul>
               <li :key="index" @click="selectItem(item)" class="item" v-for="(item, index) in discList">
                 <div class="icon">
-                  <img height="60" v-lazy="item.imgurl" width="60">
+                  <img height="60" v-lazy="item.imgurl" width="60" alt="logo">
                 </div>
                 <div class="text">
                   <h2 class="name" v-html="item.creator.name"></h2>
@@ -82,9 +82,8 @@
 
     handleScroll(e: any) {
       if (e.y === 0) {
-          console.log('上拉刷新')
-      } else {
-          console.log(e)
+        this._getRecommend();
+        this._getDiscList();
       }
     }
 
