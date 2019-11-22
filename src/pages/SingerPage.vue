@@ -1,17 +1,17 @@
 <template>
-  <div class="SingerDetail">SingerDetail</div>
+  <div class="SingerPage">SingerPage</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
-  name: 'SingerDetail'
+  name: 'SingerPage'
 })
-export default class SingerDetail extends Vue {}
+export default class SingerPage extends Vue {}
 </script>
 
 <style>
-.SingerDetail {
+.SingerPage {
 }
 </style>

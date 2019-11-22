@@ -9,39 +9,32 @@
     ]
   },
   "rules": {
-    "quotemark": [
-      false,
-      "single"
-    ],
-    "indent": [
-      true,
-      "spaces",
-      2
-    ],
-    "interface-name": false,
-    "ordered-imports": false,
-    "object-literal-sort-keys": false,
-    "no-consecutive-blank-lines": false,
-    "trailing-comma": false,
-    "no-console": false,
-    "member-ordering": false,
-    "no-empty": false,
-    "semicolon": false,
-    "prefer-for-of": false,
-    "no-parameter-properties": false,
-    "no-use-before-declare": true,
-    "no-var-keyword": true,
-    "no-shadowed-variable": true,
-    "no-duplicate-variable": true,
     "member-access": false,
-    "comment-format": [
+    "member-ordering": [
       true,
-      "check-space"
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "public-instance-field",
+          "protected-instance-field",
+          "static-method",
+          "instance-method",
+          "public-instance-method",
+          "private-instance-method"
+        ]
+      }
     ],
-    "no-unused-expression": false,
-    "no-unused-variable": false,
-    "space-before-function-paren": false,
-    "prefer-const": false,
-    "forin": false
+    "indent": [true, "spaces", 2],
+    "interface-name": false,
+    "no-consecutive-blank-lines": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "quotemark": [true, "single"],
+    "semicolon": false,
+    "trailing-comma": false,
+    "forin":false,
+    "no-console": false,
+    "arrow-parens": false
   }
 }

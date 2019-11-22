@@ -1,0 +1,8 @@
+{
+  "singleQuote": true,
+  "whitespace": true,
+  "printWidth": 110,
+  "jsxBracketSameLine": true,
+  "semi": false,
+  "indent_size": 2
+}
