@@ -16,7 +16,7 @@ export enum RESPONSE {
   NOT_ALLOW = 110
 }
 
-export interface ResponseData {
+export interface ResponseData<T> {
   code: number;
-  data: any;
+  data: T;
 }
