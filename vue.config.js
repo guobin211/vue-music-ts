@@ -10,7 +10,6 @@ module.exports = {
         }
       ];
     });
-    console.log(config)
   },
   devServer: {
     open: process.platform === "darwin",

@@ -15,35 +15,31 @@ const routes: RouteConfig[] = [
   {
     path: '/recommend',
     name: 'recommend',
-    component: () => import(/* webpackChunkName: "recommend" */ '@/pages/RecommendPage.vue'),
-    children: [
-      {path: ':id', component: RecommendDetail}
-    ]
+    component: () => import(/* webpackChunkName: "recommend" */ '@/pages/RecommendPage.vue')
   },
+  { path: '/recommend/:id', component: RecommendDetail },
   {
     path: '/singer',
     name: 'singer',
-    component: () => import(/* webpackChunkName: "singer" */ '@/pages/SingerPage.vue'),
-    children: [
-      {path: ':id', component: SingerDetail}
-    ]
+    component: () => import(/* webpackChunkName: "singer" */ '@/pages/SingerPage.vue')
+  },
+  {
+    path: '/singer/:id',
+    name: 'SingerDetail',
+    component: SingerDetail
   },
   {
     path: '/rank',
     name: 'rank',
-    component: () => import(/* webpackChunkName: "rank" */ '@/pages/RankPage.vue'),
-    children: [
-      {path: ':id', component: RankDetail}
-    ]
+    component: () => import(/* webpackChunkName: "rank" */ '@/pages/RankPage.vue')
   },
+  { path: '/rank/:id', component: RankDetail },
   {
     path: '/search',
     name: 'search',
-    component: () => import(/* webpackChunkName: "search" */ '@/pages/SearchPage.vue'),
-    children: [
-      {path: ':id', component: SearchDetail}
-    ]
+    component: () => import(/* webpackChunkName: "search" */ '@/pages/SearchPage.vue')
   },
+  { path: '/search/:id', component: SearchDetail },
   {
     path: '/user',
     name: 'user',

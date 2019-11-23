@@ -1,5 +1,5 @@
 <template>
-  <div class="MPlayer">MPlayer</div>
+  <div class="MPlayer" v-show="false">MPlayer</div>
 </template>
 
 <script lang="ts">
