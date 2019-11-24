@@ -3,7 +3,7 @@
     <MHeader></MHeader>
     <MTab></MTab>
     <keep-alive>
-      <router-view/>
+      <router-view></router-view>
     </keep-alive>
     <MPlayer></MPlayer>
   </div>

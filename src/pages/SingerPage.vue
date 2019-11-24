@@ -1,8 +1,8 @@
 <template>
   <div class="SingerPage" ref="singerRef">
     <MListView :data-list="singers" @select="selectSinger" ref="listRef"></MListView>
+    <router-view></router-view>
   </div>
-
 </template>
 
 <script lang="ts">

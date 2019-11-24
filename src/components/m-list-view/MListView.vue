@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import MScroll from '@/components/m-scroll/MScroll.vue'
 import MLoading from '@/components/m-loading/MLoading.vue'
 import { Singer, SingerGroup } from '@/api/singer-service'
@@ -121,12 +121,14 @@ export default class MListView extends Vue {
 
   @Watch('diff')
   onDiffChange(newVal: number) {
-    let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
+    let fixedTop = newVal > 0 && newVal < TITLE_HEIGHT ? newVal - TITLE_HEIGHT : 0
     if (this.fixedTop === fixedTop) {
       return
     }
-    this.fixedTop = fixedTop;
-    (this.$refs.fixedRef as HTMLDivElement).style.transform = `translate3d(0,${fixedTop}px,0)`
+    this.fixedTop = fixedTop
+    {
+      (this.$refs.fixedRef as HTMLDivElement).style.transform = `translate3d(0,${fixedTop}px,0)`
+    }
   }
 
   refresh() {
@@ -152,7 +154,7 @@ export default class MListView extends Vue {
   onShortcutTouchMove(e: TouchEvent) {
     let firstTouch = e.touches[0]
     this.touch.y2 = firstTouch.pageY
-    let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
+    let delta = ((this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT) | 0
     let anchorIndex = parseInt(this.touch.anchorIndex) + delta
     this._scrollTo(anchorIndex)
   }
@@ -178,8 +180,10 @@ export default class MListView extends Vue {
     } else if (index > this.listHeight.length - 2) {
       index = this.listHeight.length - 2
     }
-    this.scrollY = -this.listHeight[index];
-    (this.$refs.listViewRef as MScrollD).scrollToElement((this.$refs.listGroupRef as any[])[index], 0)
+    this.scrollY = -this.listHeight[index]
+    {
+      (this.$refs.listViewRef as MScrollD).scrollToElement((this.$refs.listGroupRef as any[])[index], 0)
+    }
   }
 }
 </script>

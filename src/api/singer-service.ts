@@ -1,8 +1,8 @@
-import { commonParams, OPTIONS } from '@/api/config'
+import { commonParams, OPTIONS, ResponseData } from '@/api/config'
 import { jsonpGet } from '@/api/http-service'
 
 export interface SingerGroup {
-  title: string,
+  title: string
   items: Singer[]
 }
 
@@ -35,7 +35,7 @@ export function getSingerList(): Promise<any> {
  * 歌手详情
  * @param singerId
  */
-export function getSingerDetail(singerId: string) {
+export function getSingerDetail(singerId: string): Promise<ResponseData<any>> {
   const url = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg'
   const data = Object.assign({}, commonParams, {
     hostUin: 0,
@@ -48,4 +48,15 @@ export function getSingerDetail(singerId: string) {
     singermid: singerId
   })
   return jsonpGet(url, data, OPTIONS)
+}
+
+export function filterSinger(singer: any) {
+  let ret: any[] = []
+  if (!singer) {
+    return ''
+  }
+  singer.forEach((s: any) => {
+    ret.push(s.name)
+  })
+  return ret.join('/')
 }

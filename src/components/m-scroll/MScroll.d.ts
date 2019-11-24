@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue';
 
 export abstract class MScrollD extends Vue {
   disable: () => void

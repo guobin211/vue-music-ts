@@ -21,12 +21,10 @@ const routes: RouteConfig[] = [
   {
     path: '/singer',
     name: 'singer',
-    component: () => import(/* webpackChunkName: "singer" */ '@/pages/SingerPage.vue')
-  },
-  {
-    path: '/singer/:id',
-    name: 'SingerDetail',
-    component: SingerDetail
+    component: () => import(/* webpackChunkName: "singer" */ '@/pages/SingerPage.vue'),
+    children: [
+      {path: ':id', component: SingerDetail}
+    ]
   },
   {
     path: '/rank',

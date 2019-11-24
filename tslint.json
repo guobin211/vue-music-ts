@@ -35,6 +35,11 @@
     "trailing-comma": false,
     "forin":false,
     "no-console": false,
-    "arrow-parens": false
+    "arrow-parens": false,
+    "prefer-const": false,
+    "prefer-for-of": false,
+    "no-unused-expression": false,
+    "radix": false,
+    "no-bitwise": false
   }
 }
