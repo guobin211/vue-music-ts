@@ -26,7 +26,7 @@ export default class MProgress extends Vue {
   touch: any = {}
 
   progressClick(e: any) {
-    //@ts-ignore
+    // @ts-ignore
     const rect = this.$refs.progressBar.getBoundingClientRect()
     const offsetWidth = e.pageX - rect.left
     this._offset(offsetWidth)
@@ -38,7 +38,7 @@ export default class MProgress extends Vue {
   progressTouchStart(e: any) {
     this.touch.initiated = true
     this.touch.startX = e.touches[0].pageX
-    //@ts-ignore
+    // @ts-ignore
     this.touch.left = this.$refs.progress.clientWidth
   }
 
@@ -47,7 +47,7 @@ export default class MProgress extends Vue {
       return
     }
     const deltaX = e.touches[0].pageX - this.touch.startX
-    //@ts-ignore
+    // @ts-ignore
     const offsetWidth = Math.min(this.$refs.progressBar.clientWidth - progressBtnWidth,
       Math.max(0, this.touch.left + deltaX)
     )
@@ -60,16 +60,16 @@ export default class MProgress extends Vue {
   }
 
   _offset(offsetWidth: number) {
-    //@ts-ignore
+    // @ts-ignore
     this.$refs.progress.style.width = `${offsetWidth}px`
-    //@ts-ignore
+    // @ts-ignore
     this.$refs.progressBtn.style[transform] = `translate3d(${offsetWidth}px,0,0)`
   }
 
   _triggerPercent() {
-    //@ts-ignore
+    // @ts-ignore
     const barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
-    //@ts-ignore
+    // @ts-ignore
     const percent = this.$refs.progress.clientWidth / barWidth
     this.$emit('percentChange', percent)
   }

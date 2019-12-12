@@ -18,14 +18,14 @@ function getAttrKey(attr: string | string[]): string[] {
 }
 
 export function shuffle(arr: any[]) {
-  let _arr = arr.slice()
-  for (let i = 0; i < _arr.length; i++) {
+  let res = arr.slice()
+  for (let i = 0; i < res.length; i++) {
     let j = getRandomInt(0, i)
-    let t = _arr[i]
-    _arr[i] = _arr[j]
-    _arr[j] = t
+    let t = res[i]
+    res[i] = res[j]
+    res[j] = t
   }
-  return _arr
+  return res
 }
 
 function getRandomInt(min: number, max: number) {

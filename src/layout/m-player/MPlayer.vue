@@ -37,6 +37,7 @@
                   class="text"
                   :class="{ current: currentLineNum === index }"
                   v-for="(line, index) in currentLyric.lines"
+                  :key="index"
                 >
                   {{ line.txt }}
                 </p>
@@ -193,8 +194,9 @@ export default class MPlayer extends Vue {
     }
     clearTimeout(this.timer)
     this.timer = setTimeout(() => {
-      // @ts-ignore
-      this.$refs.audio.play()
+      (this.$refs.audio as HTMLAudioElement).play().then().catch(error => {
+        console.log(error)
+      })
       this.getLyric()
     }, 1000)
   }
@@ -212,7 +214,7 @@ export default class MPlayer extends Vue {
   @Watch('playing')
   onPlayingChange(newPlaying: boolean) {
     this.$nextTick(() => {
-      //@ts-ignore
+      // @ts-ignore
       newPlaying ? this.$refs.audio.play() : this.$refs.audio.pause()
     })
   }
@@ -372,7 +374,9 @@ export default class MPlayer extends Vue {
     this.songReady = false
   }
 
-  toggleFavorite() {}
+  toggleFavorite() {
+    // todo
+  }
 
   getFavoriteIcon(song: any) {
     if (this.favoriteList.some((el: any) => el.id === song.id)) {
