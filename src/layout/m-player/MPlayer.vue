@@ -141,16 +141,14 @@ export default class MPlayer extends Vue {
   @Mutation('SET_PLAY_MODE') SET_PLAY_MODE!: (mode: PlayMode) => void
   @Mutation('SET_PLAYLIST') SET_PLAYLIST!: (list: any[]) => void
   songReady = false
-  currentTime = 0
-  radius = 32
   currentLyric: any = null
+  currentTime = 0
   currentLineNum = 0
   currentShow = 'cd'
   playingLyric = ''
   favoriteList = []
   timer = 0
   touch: any = {}
-
   get iconMode() {
     switch (this.mode) {
       case PlayMode.SEQUENCE:
