@@ -45,7 +45,7 @@
       <div class="fixed-title">{{ fixedTitle }}</div>
     </div>
     <div v-show="!dataList.length" class="loading-container">
-      <MLoading></MLoading>
+      <MLoading/>
     </div>
   </MScroll>
 </template>

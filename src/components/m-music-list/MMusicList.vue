@@ -1,13 +1,13 @@
 <template>
   <div class="MMusicList">
     <div class="back" @click="back">
-      <i class="icon-back"></i>
+      <i class="icon-back"/>
     </div>
-    <h1 class="title" v-html="title"></h1>
+    <h1 class="title" v-html="title"/>
     <div class="bg-image" :style="bgStyle" ref="bgImage">
       <div class="play-wrapper">
         <div ref="playBtn" v-show="songs.length > 0" class="play" @click="random">
-          <i class="icon-play"></i>
+          <i class="icon-play"/>
           <span class="text">随机播放全部</span>
         </div>
       </div>
@@ -23,10 +23,10 @@
       ref="listRef"
     >
       <div class="song-list-wrapper">
-        <MSongList :songs="songs" :rank="rank" @select="selectItem"></MSongList>
+        <MSongList :songs="songs" :rank="rank" @select="selectItem"/>
       </div>
       <div v-show="!songs.length" class="loading-container">
-        <MLoading></MLoading>
+        <MLoading/>
       </div>
     </MScroll>
   </div>

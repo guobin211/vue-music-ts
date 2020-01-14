@@ -1,7 +1,7 @@
 <template>
   <div class="SingerPage" ref="singerRef">
-    <MListView :data-list="singers" @select="selectSinger" ref="listRef"></MListView>
-    <router-view></router-view>
+    <MListView :data-list="singers" @select="selectSinger" ref="listRef"/>
+    <router-view/>
   </div>
 </template>
 

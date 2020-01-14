@@ -3,14 +3,14 @@
     <transition name="normal">
       <div class="normal-player" v-if="currentSong" v-show="fullScreen">
         <div class="background">
-          <img width="100%" height="100%" :src="currentSong.image" />
+          <img width="100%" height="100%" :src="currentSong.image"  alt=""/>
         </div>
         <div class="top">
           <div class="back" @click="back">
-            <i class="icon-back"></i>
+            <i class="icon-back"/>
           </div>
-          <h1 class="title" v-html="currentSong.name"></h1>
-          <h2 class="subtitle" v-html="currentSong.singer"></h2>
+          <h1 class="title" v-html="currentSong.name"/>
+          <h2 class="subtitle" v-html="currentSong.singer"/>
         </div>
         <div
           class="middle"
@@ -21,7 +21,7 @@
           <div class="middle-l" ref="middleL">
             <div class="cd-wrapper" ref="cdWrapper">
               <div class="cd" :class="cdCls">
-                <img class="image" :src="currentSong.image" />
+                <img class="image" :src="currentSong.image"  alt=""/>
               </div>
             </div>
             <div class="playing-lyric-wrapper">
@@ -47,31 +47,31 @@
         </div>
         <div class="bottom">
           <div class="dot-wrapper">
-            <span class="dot" :class="{ active: currentShow === 'cd' }"></span>
-            <span class="dot" :class="{ active: currentShow === 'lyric' }"></span>
+            <span class="dot" :class="{ active: currentShow === 'cd' }"/>
+            <span class="dot" :class="{ active: currentShow === 'lyric' }"/>
           </div>
           <div class="progress-wrapper">
             <span class="time time-l">{{ format(currentTime) }}</span>
             <div class="progress-bar-wrapper">
-              <MProgress :percent="percent" @percentChange="onProgressBarChange"></MProgress>
+              <MProgress :percent="percent" @percentChange="onProgressBarChange"/>
             </div>
             <span class="time time-r">{{ format(currentSong.duration) }}</span>
           </div>
           <div class="operators">
             <div class="icon i-left" @click="changeMode">
-              <i :class="iconMode"></i>
+              <i :class="iconMode"/>
             </div>
             <div class="icon i-left" :class="disableCls">
-              <i @click="prev" class="icon-prev"></i>
+              <i @click="prev" class="icon-prev"/>
             </div>
             <div class="icon i-center" :class="disableCls">
-              <i @click="togglePlaying" :class="playIcon"></i>
+              <i @click="togglePlaying" :class="playIcon"/>
             </div>
             <div class="icon i-right" :class="disableCls">
-              <i @click="next" class="icon-next"></i>
+              <i @click="next" class="icon-next"/>
             </div>
             <div class="icon i-right">
-              <i @click="toggleFavorite(currentSong)" class="icon" :class="getFavoriteIcon(currentSong)"></i>
+              <i @click="toggleFavorite(currentSong)" class="icon" :class="getFavoriteIcon(currentSong)"/>
             </div>
           </div>
         </div>
@@ -80,19 +80,19 @@
     <transition name="mini">
       <div class="mini-player" v-if="currentSong" v-show="!fullScreen" @click="open">
         <div class="icon">
-          <img :class="cdCls" width="40" height="40" :src="currentSong.image" />
+          <img :class="cdCls" width="40" height="40" :src="currentSong.image"  alt=""/>
         </div>
         <div class="text">
-          <h2 class="name" v-html="currentSong.name"></h2>
-          <p class="desc" v-html="currentSong.singer"></p>
+          <h2 class="name" v-html="currentSong.name"/>
+          <p class="desc" v-html="currentSong.singer"/>
         </div>
         <div class="control"></div>
         <div class="control" @click.stop="showPlaylist">
-          <i class="icon-playlist"></i>
+          <i class="icon-playlist"/>
         </div>
       </div>
     </transition>
-    <MPlayList></MPlayList>
+    <MPlayList/>
     <audio
       ref="audio"
       :src="currentSong ? currentSong.url : ''"
@@ -100,7 +100,7 @@
       @error="error"
       @timeupdate="updateTime"
       @ended="end"
-    ></audio>
+    />
   </div>
 </template>
 

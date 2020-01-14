@@ -13,7 +13,7 @@
           <MSlider>
             <div v-for="(item, index) in slider" :key="index">
               <a :href="item.linkUrl">
-                <img class="needsclick" @load="loadImage" :src="item.picUrl" />
+                <img class="needsclick" @load="loadImage" :src="item.picUrl"  alt="pic"/>
               </a>
             </div>
           </MSlider>
@@ -23,11 +23,11 @@
           <ul>
             <li @click="selectItem(item)" v-for="(item, index) in discList" class="item" :key="index">
               <div class="icon">
-                <img width="60" height="60" v-lazy="item.imgurl" alt="icon" />
+                <img width="60" height="60" v-lazy="item.imgurl" alt="icon"  src="logo"/>
               </div>
               <div class="text">
-                <h2 class="name" v-html="item.creator.name"></h2>
-                <p class="desc" v-html="item.dissname"></p>
+                <h2 class="name" v-html="item.creator.name"/>
+                <p class="desc" v-html="item.dissname"/>
               </div>
             </li>
           </ul>

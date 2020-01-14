@@ -1,7 +1,7 @@
 <template>
   <div class="MSlider" ref="sliderRef">
     <div class="slider-group" ref="sliderGroup">
-      <slot></slot>
+      <slot/>
     </div>
     <div class="dots">
       <span
@@ -9,7 +9,7 @@
         :class="{ active: currentPageIndex === index }"
         v-for="(item, index) in dots"
         :key="index"
-      ></span>
+      />
     </div>
   </div>
 </template>
